@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LectureDicoService } from './lecture-dico.service';
 
 
 @Component({
@@ -9,30 +11,25 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppComponent implements OnInit {
 
-constructor(private http: HttpClient) {}
-
-  //wordsForm: FormGroup;
   title = 'Guillaume first App';
-  tabWords: string[];
+  myDate: Date;
+  tabWords: string[] = []
   items=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
-  numSelected: Number;
+  numSelected: Number=20;
 
-  ngOnInit() {
-    this.numSelected=5;
-    this.getMots(this.numSelected);
-  }
+  constructor(
+      private dicoService: LectureDicoService,
+      private http: HttpClient,
+    ) {}
 
-  getMots(longueur:Number):string[] {
-    const path=`assets/${this.numSelected}.txt`;
-    this.http.get(path, {responseType:'arraybuffer'})
-    .subscribe((resp) => {
-      this.tabWords=new TextDecoder('iso-8859-1').decode(resp).split('\n');
-    } , (err) => console.error(err));
-    return this.tabWords;
-  }
+    ngOnInit() {
+      this.numSelected=1;
+    }
 
-  onNumSelected(val:any) {
-    this.getMots(this.numSelected);
-  }
+  
+    onNumSelected(val:Number) {
+      console.log(`numSelected: ${val}`);
+      this.tabWords = this.dicoService.getMotsClassique(val);
+    }
 
 }

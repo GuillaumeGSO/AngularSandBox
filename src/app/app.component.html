@@ -3,6 +3,8 @@
 <div style="text-align:center">
   <h1>
     Welcome to {{ title }} !
+    <br/>
+    {{mydate | date : 'mediumTime'}}
   </h1>
 
   <select [(ngModel)]="numSelected" (ngModelChange)='onNumSelected($event)'>
