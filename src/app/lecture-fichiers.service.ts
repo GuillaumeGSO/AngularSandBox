@@ -17,7 +17,7 @@ export class LectureFichiersService {
     console.log(`Tentative de récupération du fichier ${path} via http`);
     this.http.get(path, {responseType:'arraybuffer'})
     .subscribe((resp) => {
-      this._resultTemp = new TextDecoder('iso-8859-1').decode(resp).split('\n',10);
+      this._resultTemp = new TextDecoder('iso-8859-1').decode(resp).split('\n');
     } , (err) => console.error(err));
     console.log(`getDico ${longueur} retourne ${this._resultTemp.length}`);
     return this._resultTemp;

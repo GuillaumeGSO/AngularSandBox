@@ -1,23 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<div class="container">
+  <h2>Welcome to {{ title }} !</h2>
 
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }} !
-    <br/>
-    {{mydate | date : 'mediumTime'}}
-  </h1>
-
-  <select [(ngModel)]="numSelected" (ngModelChange)='onNumSelected($event)'>
+  <select class="form-control" [(ngModel)]="numSelected" 
+  (ngModelChange)='onNumSelected($event)'>
+    <option selected>Choisir le nombre de lettres</option>
     <option [value]="i" *ngFor="let i of items" >{{i}}</option>
   </select>
-
-  <h1>
-    Nombre de mots : {{ tabWords?.length }}
-  </h1>
-  <ul>
-  <li *ngFor="let word of tabWords">
-    {{word}}
-    </li>
+  
+  <label>Nombre de mots : {{ tabWords?.length }}</label>
+  <hr>
+  <label *ngFor="let word of tabWords">{{word}}&nbsp;</label>
+  <!-- 
+    <ul class="list-group row">
+    <li  class="list-group-item col-md-6" *ngFor="let word of tabWords">{{word}}</li>
   </ul>
+-->
+</div>
+
   
 

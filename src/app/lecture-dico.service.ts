@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable, from} from 'rxjs';
 import { LectureFichiersService } from './lecture-fichiers.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LectureDicoService {
+
 
   constructor(private lectureFichierService:LectureFichiersService) {
   }
@@ -14,21 +15,19 @@ export class LectureDicoService {
     return this.lectureFichierService.getListeMots(longueur).filter(x => x!='');
   }
 
-  getMotsObservable(longueur: Number): Observable<string> {
-    let list = this.lectureFichierService.getListeMots(longueur);
-    console.log(`Le service lecture de fichie a retourné ${list.length}`);
-    return new Observable(
-      observer => {
-        setInterval(() => observer.next(list.pop()), 1000);
-      }
-    )
-  }
-
-  getUnMotParSeconde(longueur: Number): Observable<string> {
-    return new Observable(
-      observer => {
-        setInterval(() => observer.next('coucou'), 1000);
-      }
-    );
+  getMotsObservable(longueur: Number) {
+    const myTab:string[] = this.lectureFichierService.getListeMots(longueur);
+    console.log('Longueur du tableau:' + myTab.length);
+    const myObservable = from(myTab);
+    
+    const myObserver = {
+      next : x => {
+          console.log('Observer got next value: ' + x );
+        },
+      error : err => console.error("Observer got an error : " + err),
+      complete: () => console.warn('Observer got a complete notification'),
+    };
+  
+    myObservable.subscribe(myObserver);
   }
 }
