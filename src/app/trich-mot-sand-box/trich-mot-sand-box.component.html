@@ -1,0 +1,36 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <h2>Welcome to {{ title }} !</h2>
+  
+  <form  [formGroup]="myForm" class="form-group">
+    <label >Choisir : </label>
+  <select id="nbLettres" formControlName="selectNbLetter" class="form-control">
+    <option [value]="i" *ngFor="let i of items" >{{i}}</option>
+  </select>
+  <input classe="form-control" formControlName="inputNbLetter"/>
+  <p class="text-danger" *ngIf="myForm.get('inputNbLetter').invalid">Erreur</p>
+
+    <p class="text-danger" *ngIf="myForm.get('inputNbLetter').hasError('required') && (myForm.submitted || myForm.get('inputNbLetter').dirty)">Required</p>
+    <p class="text-danger" *ngIf="myForm.get('inputNbLetter').hasError('min') && (myForm.submitted || myForm.get('inputNbLetter').dirty)">min 1</p>
+    <p class="text-danger" *ngIf="myForm.get('inputNbLetter').hasError('max') && (myForm.submitted || myForm.get('inputNbLetter').dirty)">max 26</p>
+  <br>
+  <button class="btn btn-primary" type="submit">OK</button>
+  
+  <p class="label">Nombre de mots : {{ tabWords?.length }}</p>
+  <hr>
+  <label *ngFor="let word of tabWords">{{word}}&nbsp;</label>
+  <!-- 
+    <ul class="list-group row">
+    <li  class="list-group-item col-md-6" *ngFor="let word of tabWords">{{word}}</li>
+  </ul>
+-->
+
+</form>
+
+<pre>{{myForm.value | json}}</pre>
+
+  
+<pre>{{myForm.status}}</pre>
+<pre>{{myForm.get('inputNbLetter').status}}</pre>
+
+
