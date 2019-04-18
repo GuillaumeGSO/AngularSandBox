@@ -1,11 +1,11 @@
 <div class="mat">
   <form [formGroup]="myForm">
-      <mat-select formControlName="inputNbLetters" class="form-control" (ngModelChange)="onChange()">
+      <mat-select style="width:50%" formControlName="inputNbLetters" class="form-control" (ngModelChange)="onChange()">
         <mat-option [value]="i" *ngFor="let i of items">{{i}}</mat-option>
     </mat-select>
-    <mat-list>
-      <mat-list-item *ngFor="let word of tabWords$ | async">{{word}}</mat-list-item>
-    </mat-list>
+    <mat-grid-list  cols="4" rowHeight="4:1">
+           <mat-grid-tile *ngFor="let word of tabWords">{{word}}</mat-grid-tile>
+    </mat-grid-list>
     <!--<div *ngIf="(tabWords$ | async) as words;else loading">{{words | custompipe }}</div> -->
   </form>
 </div>

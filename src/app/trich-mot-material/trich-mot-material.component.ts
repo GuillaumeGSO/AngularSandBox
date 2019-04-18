@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class TrichMotMaterialComponent implements OnInit {
 
   myForm: FormGroup
-  tabWords$: Observable<any>
+  tabWords: string[]
 
   items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
 
@@ -29,7 +29,7 @@ export class TrichMotMaterialComponent implements OnInit {
   }
 
   onChange() {
-    this.tabWords$ = this._fichierService.getListeMotsObservable(this.myForm.get('inputNbLetters').value);
+    this.tabWords = this._fichierService.getListeMots(this.myForm.get('inputNbLetters').value);
   }
 
 }

@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { TrichMotMaterialComponent } from './trich-mot-material/trich-mot-material.component';
 import { TrichMotSandBoxComponent } from './trich-mot-sand-box/trich-mot-sand-box.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRippleModule, MatListModule } from '@angular/material';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRippleModule, MatListModule, MatGridListModule } from '@angular/material';
 import { CustompipePipe } from './custompipe.pipe';
 
 const appRoutes: Routes = [
@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   { path: '**', component: AppComponent }
 ];
 const matModules = [
-  MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRippleModule, MatListModule
+  MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatRippleModule, MatListModule, MatGridListModule
 ]
 
 @NgModule({
